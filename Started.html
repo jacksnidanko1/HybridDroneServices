@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Hybrid Drone Services</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <script src="modernizr.custom.40753.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #000000;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+    header {
+      position: relative;
+      text-align: center;
+    }
+    .lang-btn, .mode-btn {
+      position: absolute;
+      right: 30px;
+      padding: 8px 16px;
+      font-size: 1em;
+      cursor: pointer;
+      background-color: #0078D7;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+    .lang-btn:hover, .mode-btn:hover {
+      background-color: #005fa3;
+    }
+    .lang-btn {
+      top: 20px;
+    }
+    .mode-btn {
+      top: 70px;
+    }
+    .dark-mode {
+      background-color: #121212;
+      color: #f1f1f1;
+    }
+    .dark-mode .lang-btn, .dark-mode .mode-btn {
+      background-color: #444;
+    }
+    .media-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px 0;
+    }
+    .media-container figcaption {
+      margin-top: 10px;
+      font-style: italic;
+      font-size: 0.95em;
+      text-align: center;
+      color: #444;
+    }
+    .dark-mode .media-container figcaption {
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div>
+        <h1><a href="index.html"><img src="images/sky.JPG" width="1700" height="500" alt=""></a></h1>
+      </div>
+      <button class="lang-btn" id="langBtn" onclick="switchLanguage()">?? Translate</button>
+      <button class="mode-btn" id="modeBtn" onclick="toggleMode()">?? Dark Mode</button>
+    </header>
+
+    <nav class="sitenavigation">
+      <ul>
+        <li><a href="started.html">About Us</a></li>
+        <li><a href="Services.html">Services</a></li>
+        <li><a href="Appointment.html">Appointment</a></li>
+        <li><a href="Trackjob.html">Job Tracker</a></li>
+        <li><a href="Gallery.html">Gallery</a></li>
+      </ul>
+    </nav>
+
+    <article>
+      <h2 id="contentstart">About Us</h2>
+      <p id="aboutText">
+        Welcome to Hybrid Drone Services! My passion for technology and aerial imaging led me to create a business that makes high-quality drone services accessible and easy to book. I specialize in providing aerial solutions for agriculture, construction, and sports filming, helping farmers monitor crop health, construction managers track site progress, and coaches capture game footage from unique perspectives. My goal is to deliver reliable, professional results while giving customers a simple way to schedule services, view updates, and explore examples of past work. With Hybrid Drone Services, I am dedicated to making drone technology practical, efficient, and impactful for every client I work with. Date Founded: <span id="foundedDate"></span>
+      </p>
+
+      <figure class="media-container">
+        <video controls autoplay muted loop playsinline width="800">
+          <source src="DroneVideo1.mov" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <figcaption>Rugby video shot with our drone service</figcaption>
+      </figure>
+
+      <h2 id="aboutMeHeader">About Me</h2>
+      <p id="aboutMeText">
+        Hi, I'm Jack Snidanko, the founder of Hybrid Drone Services and a Part 107 licensed pilot. My journey with drones began as a hobby, experimenting with drones as a kid. Over time, that passion grew as I used drones more and more. I did robotics in high school which pushed me to love drones. Whether it's capturing stunning landscape footage, assisting farmers with crop monitoring, or supporting local sports teams, I take pride in combining creativity with precision to deliver exceptional results.
+      </p>
+
+      <figure class="media-container">
+        <video controls autoplay muted loop playsinline width="800">
+          <source src="DroneVideo2.mov" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <figcaption>Behind the scenes: Drone calibration and test flight</figcaption>
+      </figure>
+    </article>
+
+    <footer></footer>
+  </div>
+
+  <script>
+    let currentLang = "en";
+    let darkMode = false;
+
+    const translations = {
+      en: {
+        title: "About Us",
+        aboutText: `Welcome to Hybrid Drone Services! My passion for technology and aerial imaging led me to create a business that makes high-quality drone services accessible and easy to book. I specialize in providing aerial solutions for agriculture, construction, and sports filming, helping farmers monitor crop health, construction managers track site progress, and coaches capture game footage from unique perspectives. My goal is to deliver reliable, professional results while giving customers a simple way to schedule services, view updates, and explore examples of past work. With Hybrid Drone Services, I am dedicated to making drone technology practical, efficient, and impactful for every client I work with. Date Founded: <span id="foundedDate"></span>`,
+        aboutMeHeader: "About Me",
+        aboutMeText: `Hi, I'm Jack Snidanko, the founder of Hybrid Drone Services and a Part 107 licensed pilot. My journey with drones began as a hobby, experimenting with drones as a kid. Over time, that passion grew as I used drones more and more. I did robotics in high school which pushed me to love drones. Whether it's capturing stunning landscape footage, assisting farmers with crop monitoring, or supporting local sports teams, I take pride in combining creativity with precision to deliver exceptional results.`
+      },
+      af: {
+        title: "Oor Ons",
+        aboutText: `Welkom by Hybrid Drone Services! ... Datum gestig: <span id="foundedDate"></span>`,
+        aboutMeHeader: "Oor My",
+        aboutMeText: `Hallo, ek is Jack Snidanko — die stigter van Hybrid Drone Services en 'n Part 107 gelisensieerde vlieënier. My reis met drones het begin as 'n stokperdjie ... Ek is trots daarop om kreatiwiteit en presisie te kombineer om uitsonderlike resultate te lewer.`
+      },
+      zu: {
+        title: "Mayelana Nathi",
+        aboutText: `Siyakwamukela ku-Hybrid Drone Services! ... Usuku lokusungulwa: <span id="foundedDate"></span>`,
+        aboutMeHeader: "Mayelana Nami",
+        aboutMeText: `Ngiyabingelela, nginguJack Snidanko — umsunguli we-Hybrid Drone Services kanye nomshayeli onelayisensi ye-Part 107. Uhambo lwami nama-drones lwaqala njengokuzijabulisa ... Ngiyaziqhenya ngokuhlanganisa ubuciko nokunemba ukuze ngihlinzeke ngemiphumela emihle.`
+      }
+    };
+
+    function updateContent(lang) {
+      document.getElementById("contentstart").innerHTML = translations[lang].title;
+      document.getElementById("aboutText").innerHTML = translations[lang].aboutText;
+      document.getElementById("aboutMeHeader").innerHTML = translations[lang].aboutMeHeader;
+      document.getElementById("aboutMeText").innerHTML = translations[lang].aboutMeText;
+
+      const date = new Date(2020, 6, 11);
+      const formattedDate = new Intl.DateTimeFormat(lang, { dateStyle: "long" }).format(date);
+      document.getElementById("foundedDate").textContent = formattedDate;
+    }
+
+    function switchLanguage() {
+      currentLang = currentLang === "en" ? "af" : currentLang === "af" ? "zu" : "en";
+      updateContent(currentLang);
+    }
+
+    function toggleMode() {
+      darkMode = !darkMode;
+      document.body.classList.toggle("dark-mode");
+      document.getElementById("modeBtn").textContent = darkMode ? "?? Light Mode" : "?? Dark Mode";
+    }
+
+    updateContent("en");
+  </script>
+
+</body>
+</html>

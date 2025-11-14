@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Hybrid Drone Services</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <script src="modernizr.custom.40753.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      transition: background 0.3s, color 0.3s;
+    }
+    header {
+      position: relative;
+      text-align: center;
+    }
+    .lang-btn, .dark-btn {
+      position: absolute;
+      top: 20px;
+      padding: 8px 16px;
+      font-size: 1em;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+      color: white;
+    }
+    .lang-btn {
+      right: 30px;
+      background-color: #0078D7;
+    }
+    .dark-btn {
+      right: 140px;
+      background-color: #444;
+    }
+    .lang-btn:hover {
+      background-color: #005fa3;
+    }
+    .dark-btn:hover {
+      background-color: #222;
+    }
+    article {
+      margin: 30px;
+      line-height: 1.6;
+      text-align: left;
+      font-size: 1em;
+    }
+    ul {
+      list-style-type: disc;
+      margin-left: 40px;
+      line-height: 1.8;
+    }
+    h3 {
+      margin-top: 25px;
+      color: #0078D7;
+    }
+    /* Dark mode styles */
+    body.dark-mode {
+      background-color: #121212;
+      color: #f1f1f1;
+    }
+    body.dark-mode h3 {
+      color: #66aaff;
+    }
+    body.dark-mode a {
+      color: #66aaff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div>
+        <h1><a href="index.html"><img src="images/sky.JPG" width="1700" height="500" alt=""></a></h1>
+      </div>
+      <!-- Buttons -->
+      <button class="dark-btn" id="darkModeBtn" onclick="toggleDarkMode()">?? Dark Mode</button>
+      <button class="lang-btn" id="langBtn" onclick="switchLanguage()">?? Translate</button>
+    </header>
+
+    <nav class="sitenavigation">
+      <ul>
+        <li><a href="started.html">About Us</a></li>
+        <li><a href="Services.html">Services</a></li>
+        <li><a href="Appointment.html">Appointment</a></li>
+        <li><a href="Trackjob.html">Job Tracker</a></li>
+        <li><a href="Gallery.html">Gallery</a></li>
+      </ul>
+    </nav>
+
+    <article>
+      <h2 id="contentTitle">Services</h2>
+      <p id="contentText">
+        Agriculture: Get detailed aerial views of your fields for crop health checks, land surveys, and growth monitoring.<br>
+        Construction: Capture site progress, inspections, and updates with precise aerial images and video.<br>
+        Sports Filming: Record practices, games, and training sessions with dynamic aerial footage that highlights every angle.<br><br>
+        Every service includes flexible booking options, quick turnaround, and a focus on professional-quality results.<br>
+        <strong>Last Updated:</strong> <span id="updateDate"></span>
+      </p>
+
+      <h3 id="pricingTitle">Pricing & Packages</h3>
+      <ul id="pricingList">
+        <li><strong>Basic Aerial Photography:</strong> $150 Up to 30 minutes of flight time with 4K photos.</li>
+        <li><strong>Construction Progress Package:</strong> $300 Weekly aerial updates and progress tracking.</li>
+        <li><strong>Sports Filming Package:</strong> $250 Full game coverage with an edited highlight reel.</li>
+        <li><strong>Agricultural Survey:</strong> $200 Crop health and land analysis reports included.</li>
+      </ul>
+    </article>
+
+    <footer></footer>
+  </div>
+
+  <script>
+    let currentLang = "en";
+
+    const translations = {
+      en: {
+        title: "Services",
+        text: `Agriculture: Get detailed aerial views of your fields for crop health checks, land surveys, and growth monitoring.<br>
+               Construction: Capture site progress, inspections, and updates with precise aerial images and video.<br>
+               Sports Filming: Record practices, games, and training sessions with dynamic aerial footage that highlights every angle.<br><br>
+               Every service includes flexible booking options, quick turnaround, and a focus on professional-quality results.<br>
+               <strong>Last Updated:</strong> <span id="updateDate"></span>`,
+        pricingTitle: "Pricing & Packages",
+        pricingList: [
+          "Basic Aerial Photography: $150 Up to 30 minutes of flight time with 4K photos.",
+          "Construction Progress Package: $300 Weekly aerial updates and progress tracking.",
+          "Sports Filming Package: $250 Full game coverage with an edited highlight reel.",
+          "Agricultural Survey: $200 Crop health and land analysis reports included."
+        ]
+      },
+      af: {
+        title: "Dienste",
+        text: `Landbou: Kry gedetailleerde lugfoto's van jou lande vir gewasgesondheid, landopnames en groeimonitering.<br>
+               Konstruksie: Neem werfontwikkeling, inspeksies en opdaterings met presiese lugbeelde en video's vas.<br>
+               Sportverfilming: Neem oefeninge, wedstryde en opleidingsessies met dinamiese lugskote wat elke hoek wys.<br><br>
+               Elke diens sluit buigsame besprekingsopsies, vinnige afhandeling en professionele gehalte resultate in.<br>
+               <strong>Laas Opgedateer:</strong> <span id="updateDate"></span>`,
+        pricingTitle: "Pryslys & Pakkette",
+        pricingList: [
+          "Basiese Lugfotografie: $150 Tot 30 minute vlugtijd met 4K foto's.",
+          "Konstruksie-voortgangspakket: $300 Weeklikse lugopdaterings en vorderingopsporing.",
+          "Sportverfilming Pakket: $250 Volledige wedstryddekking met 'n gemonteerde hoogtepuntvideo.",
+          "Landbou-opname: $200 Gewasgesondheid en grondanaliserapporte ingesluit."
+        ]
+      },
+      zu: {
+        title: "Izinsizakalo",
+        text: `Ezolimo: Thola ukubukwa komoya okunemininingwane kwezindawo zakho zokuhlola impilo yezitshalo, izibalo zomhlaba, nokulandelela ukukhula.<br>
+               Ezokwakha: Thwebula inqubekela phambili yesiza, ukuhlolwa, nokubuyekezwa ngezithombe zomoya eziqondile nezividiyo.<br>
+               Ezokudlala: Qopha izivivinyo, imidlalo, nezikhathi zokuqeqesha ngevidiyo yomoya enezindawo ezihlukene.<br><br>
+               Yonke insizakalo ihlanganisa izinketho zokubhukha eziguquguqukayo, isikhathi esifushane sokuphendula, kanye nokugxila kumiphumela esemgangathweni wobungcweti.<br>
+               <strong>Kubuyekezwe:</strong> <span id="updateDate"></span>`,
+        pricingTitle: "Intengo & Amaphakheji",
+        pricingList: [
+          "Ukuthwebula Izithombe Zomoya Ezilula: $150 Kuze kube imizuzu engama-30 yesikhathi sokundiza nge-4K izithombe.",
+          "Iphakheji Yokuqhubeka Kwezokwakha: $300 Izibuyekezo zansuku zonke nezibuyekezo zokuthuthuka.",
+          "Iphakheji Yokudlala Izemidlalo: $250 Ukumbozwa kwegeyimu ephelele nevidiyo yokugqamisa.",
+          "Ucwaningo Lwezolimo: $200 Ukuhlolwa kwempilo yezitshalo kanye nezibalo zomhlaba kuhlanganisiwe."
+        ]
+      }
+    };
+
+    function updateContent(lang) {
+      const t = translations[lang];
+      document.getElementById("contentTitle").innerHTML = t.title;
+      document.getElementById("contentText").innerHTML = t.text;
+      document.getElementById("pricingTitle").innerHTML = t.pricingTitle;
+      document.getElementById("pricingList").innerHTML = t.pricingList.map(item => `<li>${item}</li>`).join('');
+      const date = new Date(2024, 9, 29);
+      const formattedDate = new Intl.DateTimeFormat(lang, { dateStyle: "long" }).format(date);
+      document.getElementById("updateDate").textContent = formattedDate;
+    }
+
+    function switchLanguage() {
+      currentLang = currentLang === "en" ? "af" : currentLang === "af" ? "zu" : "en";
+      updateContent(currentLang);
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      const btn = document.getElementById("darkModeBtn");
+      if (document.body.classList.contains("dark-mode")) {
+        btn.textContent = "?? Light Mode";
+      } else {
+        btn.textContent = "?? Dark Mode";
+      }
+    }
+
+    updateContent("en");
+  </script>
+
+</body>
+</html>

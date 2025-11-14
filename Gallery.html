@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Hybrid Drone Services</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <script src="modernizr.custom.40753.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      transition: background 0.3s, color 0.3s;
+      background-color: white;
+      color: black;
+    }
+    header {
+      position: relative;
+      text-align: center;
+    }
+    .lang-btn, .dark-btn {
+      position: absolute;
+      top: 20px;
+      padding: 8px 16px;
+      font-size: 1em;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      transition: background 0.3s ease;
+    }
+    .lang-btn {
+      right: 30px;
+      background-color: #0078D7;
+    }
+    .dark-btn {
+      right: 140px;
+      background-color: #444;
+    }
+    .lang-btn:hover {
+      background-color: #005fa3;
+    }
+    .dark-btn:hover {
+      background-color: #222;
+    }
+    article {
+      margin: 30px;
+      line-height: 1.6;
+    }
+    img {
+      display: block;
+      margin: 20px auto;
+      max-width: 90%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+    h3 {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 1.6em;
+      color: #333;
+    }
+
+    /* Dark mode styles */
+    body.dark-mode {
+      background-color: #121212;
+      color: #f1f1f1;
+    }
+    body.dark-mode h3 {
+      color: #66aaff;
+    }
+    body.dark-mode a {
+      color: #66aaff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div>
+        <h1><a href="index.html"><img src="images/sky.JPG" width="1700" height="500" alt="Hybrid Drone Services Banner"></a></h1>
+      </div>
+      <button class="dark-btn" id="darkModeBtn" onclick="toggleDarkMode()">?? Dark Mode</button>
+      <button class="lang-btn" id="langBtn" onclick="switchLanguage()">?? Translate</button>
+    </header>
+
+    <nav class="sitenavigation">
+      <ul>
+        <li><a href="started.html">About Us</a></li>
+        <li><a href="Services.html">Services</a></li>
+        <li><a href="Appointment.html">Appointment</a></li>
+        <li><a href="Trackjob.html">Job Tracker</a></li>
+        <li><a href="Gallery.html">Gallery</a></li>
+      </ul>
+    </nav>
+
+    <article>
+      <h2 id="contentTitle">Gallery</h2>
+      <p id="contentText">
+        Explore our drone photography and videography work, showcasing agriculture surveys, construction progress tracking, and sports coverage. Each image represents the precision and creativity Hybrid Drone Services brings to every project.<br><br>
+        <strong>Last Updated:</strong> <span id="updateDate"></span>
+      </p>
+
+      <!-- Original visuals -->
+      <img src="images/Image1.PNG" alt="Drone View 1">
+      <img src="images/Image2.PNG" alt="Drone View 2">
+      <img src="images/Image3.PNG" alt="Drone View 3">
+      <img src="images/Image4.PNG" alt="Drone View 4">
+      <img src="images/Image5.PNG" alt="Drone View 5">
+      <img src="images/Image6.PNG" alt="Drone View 6">
+
+      <!-- New section: Updated visuals -->
+      <h3>Updated Visuals</h3>
+      <img src="images/Image7.PNG" alt="Updated Drone View 7">
+
+    </article>
+
+    <footer></footer>
+  </div>
+
+  <script>
+    let currentLang = "en";
+
+    const translations = {
+      en: {
+        title: "Gallery",
+        text: `Explore our drone photography and videography work, showcasing agriculture surveys, construction progress tracking, and sports coverage. Each image represents the precision and creativity Hybrid Drone Services brings to every project.<br><br>
+               <strong>Last Updated:</strong> <span id="updateDate"></span>`
+      },
+      af: {
+        title: "Galery",
+        text: `Verken ons dronefotografie en videowerk wat landbou-opnames, konstruksievordering en sportdekking toon. Elke beeld verteenwoordig die presisie en kreatiwiteit wat Hybrid Drone Services na elke projek bring.<br><br>
+               <strong>Laas Opgedateer:</strong> <span id="updateDate"></span>`
+      },
+      zu: {
+        title: "Igalari",
+        text: `Hlola imisebenzi yethu yokuthatha izithombe nokwenza amavidiyo ngama-drones, ebonisa izifundo zezolimo, ukuqhubeka kwemisebenzi yokwakha, kanye nokumbozwa kwezemidlalo. Isithombe ngasinye sibonisa ukunemba nobuciko obulethwa yi-Hybrid Drone Services kuwo wonke amaphrojekthi.<br><br>
+               <strong>Kubuyekezwe:</strong> <span id="updateDate"></span>`
+      }
+    };
+
+    function updateContent(lang) {
+      document.getElementById("contentTitle").innerHTML = translations[lang].title;
+      document.getElementById("contentText").innerHTML = translations[lang].text;
+
+      const date = new Date(2024, 9, 29);
+      const formattedDate = new Intl.DateTimeFormat(lang, { dateStyle: "long" }).format(date);
+      document.getElementById("updateDate").textContent = formattedDate;
+    }
+
+    function switchLanguage() {
+      currentLang = currentLang === "en" ? "af" : currentLang === "af" ? "zu" : "en";
+      updateContent(currentLang);
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      const btn = document.getElementById("darkModeBtn");
+      btn.textContent = document.body.classList.contains("dark-mode")
+        ? "?? Light Mode"
+        : "?? Dark Mode";
+    }
+
+    updateContent("en");
+  </script>
+
+</body>
+</html>

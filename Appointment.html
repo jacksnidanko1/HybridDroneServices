@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Hybrid Drone Services</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <script src="modernizr.custom.40753.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      transition: background 0.3s, color 0.3s;
+    }
+    header {
+      position: relative;
+      text-align: center;
+    }
+    .lang-btn, .dark-btn {
+      position: absolute;
+      top: 20px;
+      padding: 8px 16px;
+      font-size: 1em;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      transition: background 0.3s ease;
+    }
+    .lang-btn {
+      right: 30px;
+      background-color: #0078D7;
+    }
+    .dark-btn {
+      right: 140px;
+      background-color: #444;
+    }
+    .lang-btn:hover {
+      background-color: #005fa3;
+    }
+    .dark-btn:hover {
+      background-color: #222;
+    }
+    article {
+      margin: 30px;
+      line-height: 1.6;
+    }
+    h3 {
+      text-align: left;
+      margin-top: 25px;
+      font-size: 1.3em;
+      color: #333;
+    }
+    ul {
+      list-style-type: disc;
+      margin-left: 40px;
+      line-height: 1.8;
+    }
+    li {
+      font-size: 1em;
+      color: #222;
+    }
+    /* Dark mode styles */
+    body.dark-mode {
+      background-color: #121212;
+      color: #f1f1f1;
+    }
+    body.dark-mode h3 {
+      color: #66aaff;
+    }
+    body.dark-mode a {
+      color: #66aaff;
+    }
+    body.dark-mode li {
+    color: #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div>
+        <h1><a href="index.html"><img src="images/sky.JPG" width="1700" height="500" alt="Hybrid Drone Services Banner"></a></h1>
+      </div>
+      <button class="dark-btn" id="darkModeBtn" onclick="toggleDarkMode()">?? Dark Mode</button>
+      <button class="lang-btn" id="langBtn" onclick="switchLanguage()">?? Translate</button>
+    </header>
+
+    <nav class="sitenavigation">
+      <ul>
+        <li><a href="started.html">About Us</a></li>
+        <li><a href="Services.html">Services</a></li>
+        <li><a href="Appointment.html">Appointment</a></li>
+        <li><a href="Trackjob.html">Job Tracker</a></li>
+        <li><a href="Gallery.html">Gallery</a></li>
+      </ul>
+    </nav>
+
+    <article>
+      <h2 id="contentTitle">Appointments</h2>
+      <p id="contentText">
+        Booking is simple and hassle-free. Choose the service you need, select a time that works for you, and confirm your appointment online. Once booked, you will receive updates and reminders so you know the status of your project at every step. My goal is to save you time and give you peace of mind knowing your drone service is handled professionally.<br><br>
+        <strong>Last Updated:</strong> <span id="updateDate"></span>
+      </p>
+
+      <h3>Available Booking Times</h3>
+      <ul>
+        <li><strong>Wednesday:</strong> 9:00 AM to 4:00 PM</li>
+        <li><strong>Thursday:</strong> 10:00 AM to 6:00 PM</li>
+        <li><strong>Friday:</strong> 9:00 AM to 5:00 PM</li>
+        <li><strong>Saturday:</strong> 8:00 AM to 7:00 PM</li>
+        <li><strong>Sunday:</strong> 10:00 AM to 7:00 PM</li>
+      </ul>
+    </article>
+
+    <footer></footer>
+  </div>
+
+  <script>
+    let currentLang = "en";
+
+    const translations = {
+      en: {
+        title: "Appointments",
+        text: `Booking is simple and hassle-free. Choose the service you need, select a time that works for you, and confirm your appointment online. Once booked, you will receive updates and reminders so you know the status of your project at every step. My goal is to save you time and give you peace of mind knowing your drone service is handled professionally.<br><br>
+              <strong>Last Updated:</strong> <span id="updateDate"></span>`
+      },
+      af: {
+        title: "Afspraakbesprekings",
+        text: `Bespreking is eenvoudig en sonder moeite. Kies die diens wat jy benodig, kies n tyd wat vir jou werk, en bevestig jou afspraak aanlyn. Sodra dit bespreek is, sal jy opdaterings en herinneringe ontvang sodat jy op hoogte bly van jou projek by elke stap. My doel is om jou tyd te bespaar en gemoedsrus te gee dat jou dronesdiens professioneel hanteer word.<br><br>
+              <strong>Laas Opgedateer:</strong> <span id="updateDate"></span>`
+      },
+      zu: {
+        title: "Ukuhlela Izikhathi",
+        text: `Ukuhlela kulula futhi akudingi umzamo omkhulu. Khetha insiza oyidingayo, ukhethe isikhathi esikufanele, bese uqinisekisa ukuhlela kwakho ku-inthanethi. Uma usuqedile, uzothola izibuyekezo nezikhumbuzi ukuze wazi isimo sephrojekthi yakho esigabeni ngasinye. Inhloso yami ukusindisa isikhathi sakho futhi ikunikeze ukuthula kwengqondo wazi ukuthi isevisi yakho ye-drone iphethwe ngobungcweti.<br><br>
+              <strong>Kubuyekezwe:</strong> <span id="updateDate"></span>`
+      }
+    };
+
+    function updateContent(lang) {
+      document.getElementById("contentTitle").innerHTML = translations[lang].title;
+      document.getElementById("contentText").innerHTML = translations[lang].text;
+      const date = new Date(2024, 9, 29);
+      const formattedDate = new Intl.DateTimeFormat(lang, { dateStyle: "long" }).format(date);
+      document.getElementById("updateDate").textContent = formattedDate;
+    }
+
+    function switchLanguage() {
+      currentLang = currentLang === "en" ? "af" : currentLang === "af" ? "zu" : "en";
+      updateContent(currentLang);
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      const btn = document.getElementById("darkModeBtn");
+      btn.textContent = document.body.classList.contains("dark-mode")
+        ? "?? Light Mode"
+        : "?? Dark Mode";
+    }
+
+    updateContent("en");
+  </script>
+
+</body>
+</html>
